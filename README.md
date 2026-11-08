@@ -33,6 +33,7 @@ Most modern search and RAG (Retrieval-Augmented Generation) architectures suffer
                                 ┌─────────────────────────────┐
                                 │   Precision Studio Web UI   │
                                 │   (Tailwind + Alpine.js)    │
+                                │    Light & Dark Themes      │
                                 └──────────────┬──────────────┘
                                                │ HTTP / REST
                                                ▼
@@ -75,7 +76,8 @@ Most modern search and RAG (Retrieval-Augmented Generation) architectures suffer
 - **HNSW Vector Indexing**: Sub-millisecond approximate nearest neighbor (ANN) vector queries with `pgvector 0.8.2`.
 - **BM25-Equivalent Lexical Search**: Uses PostgreSQL `tsvector`, `GIN` indexing, and `websearch_to_tsquery` with position-density cover ranking (`ts_rank_cd`).
 - **Feather-Light Local AI**: Generates 384-dimensional dense vectors using `FastEmbed` with `bge-small-en-v1.5` over CPU ONNX Runtime (~65 MB disk footprint, no PyTorch, 0 cloud API fees).
-- **Precision Studio UI**: High-density developer interface crafted with clean typography (`Plus Jakarta Sans` + `JetBrains Mono`), dual-stream explainability, and an interactive RLS isolation verification laboratory.
+- **Dual Light/Dark Theme Precision UI**: High-density developer interface crafted with clean typography (`Plus Jakarta Sans` + `JetBrains Mono`), dual-stream explainability, instant light/dark theme toggling, and an interactive RLS isolation verification laboratory.
+- **Rich Seed Dataset**: Pre-populated with 37+ documents across 5 realistic enterprise tenants (Financial Services, Robotics & Defense, Health & Biotech, Autonomous AI Systems, and Global Logistics).
 
 ---
 
@@ -206,7 +208,7 @@ EMBEDDING_DIM=384
 # Creates tables, vector indexes, GIN full-text indexes, and RLS policies
 python init_db.py
 
-# Seeds 3 enterprise tenants (Finance, Defense, Biotech) with realistic documents
+# Seeds 5 enterprise tenants (Finance, Defense, Biotech, AI, Logistics) with 37+ documents
 python seed_data.py
 ```
 
@@ -242,9 +244,9 @@ Omnisearch/
 ├── init_db.py          # PostgreSQL schema, pgvector HNSW & GIN indexes, RLS setup
 ├── main.py             # FastAPI backend application & API routing
 ├── search_engine.py    # Reciprocal Rank Fusion (RRF) query & ingestion pipeline
-├── seed_data.py        # Multi-tenant sample data generator
+├── seed_data.py        # Multi-tenant sample data generator (5 tenants, 37 docs)
 ├── static/
-│   └── index.html      # Precision Studio UI (Tailwind + Alpine.js)
+│   └── index.html      # Precision Studio UI with Light & Dark theme support
 ├── tests/
 │   ├── test_api.py     # Endpoint integration test suite
 │   ├── test_rls.py     # Row-Level Security isolation verification test
